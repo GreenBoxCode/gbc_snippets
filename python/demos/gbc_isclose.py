@@ -1,4 +1,4 @@
-def is_close(a, b, rel_tol=1e-9, abs_tol=0.0):
+def is_close(a, b, rel_tol=1e-09, abs_tol=0.0):
     """
     Check if two numbers are approximately equal.
 
@@ -29,15 +29,19 @@ def is_close(a, b, rel_tol=1e-9, abs_tol=0.0):
 
     # Calculate the relative tolerance and compare
     diff = abs(a - b)
-    if diff <= max(abs_tol, rel_tol):
-        # Comment out the following line to see the difference
-        print(f'diff: {diff}')
+    max_abs = max(abs(a), abs(b))
+    if diff <= max(abs_tol, rel_tol * max_abs):
+        # Uncomment the following line to see the difference
+        #print(f'diff: {diff}')
         return True
-    return False
+    else:
+        # Uncomment the following line to see the difference
+        #print(f'diff: {diff}')
+        return False
 
 
 # Test function
 a = 2.000000000342
-b = 2.000000000453
-print(is_close(a, b))  # True with a relative tolerance of 1e-9
-print(is_close(a, b, rel_tol=1e-10))  # False with a relative tolerance of 1e-10
+b = 2.000000000953
+print(is_close(a, b))  # True with a relative tolerance of 2e-9
+
