@@ -5,12 +5,14 @@
 # function to save a dictionary to a file
 # input: dictionary, filename
 # output: file with dictionary contents
+import os
+import warnings
 
 
-def dic2file(my_dict):
-    """Save a dictionary to a file"""
+def dict2file(my_dict):
+    """Append a dictionary to a file"""
     try:
-        with open("gbc_dict2file.txt", "w") as f:
+        with open("gbc_dict2file.txt", "a") as f:
             for key, value in my_dict.items():
                 f.write(f"{key}: {value}\n")
     except Exception as e:
@@ -21,28 +23,33 @@ def dic2file(my_dict):
 
 # Test the function
 my_dict = {"Name": "Michael", "Age": 42, "Height": 6.1}
-dic2file(my_dict)
+
+dict2file(my_dict)
+
+
 
 # Function to read a file into a dictionary
 # input: filename
 # output: dictionary
-
-
-def file2dic(filename):
-    """Read a file into a dictionary"""
+def file2dict(filename):
+    """Read a file into a nested dictionary"""
+    my_dict = {}
     try:
+        key = ""
+        value = ""
         with open(filename, "r") as f:
-            my_dict = {}
             for line in f:
-                (key, val) = line.split(":")
-                my_dict[key] = val
+                line = line.strip()
+                if line:
+                    key, value = line.split(":")
+                    my_dict[key] = value
     except Exception as e:
-        print(f"Exception has occured\n{e}")
+        print(f"Exception has occured in function file2dict()\n{e}")
     finally:
         f.close()
     return my_dict
 
 
 # Test the function
-my_dict = file2dic("gbc_dict2file.txt")
+my_dict = file2dict("gbc_dict2file.txt")
 print(my_dict)

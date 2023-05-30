@@ -1,3 +1,0 @@
-Name: Michael
-Age: 42
-Height: 6.1
