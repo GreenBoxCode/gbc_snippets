@@ -1,3 +1,5 @@
+# Generic makefile.
+# Uses the project directory name as the target name
 # Compiler and flags
 CXX        := g++
 CXXFLAGS   := -Wall -Wextra -O3 -std=c++20
